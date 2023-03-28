@@ -20,6 +20,7 @@
     <!-- <course-card *ngFor="let course of ( courses$ | async )" -->
     <!-- 2. Instead of doing the async here, we do it at the parent DIV above -->
     <course-card *ngFor="let course of courses"
+      (courseChanged)="save($event)"
       [course]="course" >
 
       <course-image [src]="course.iconUrl"></course-image>
