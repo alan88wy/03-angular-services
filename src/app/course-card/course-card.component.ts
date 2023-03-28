@@ -50,6 +50,9 @@ export class CourseCardComponent implements OnInit {
     //    only want to use service created by this component in the
     //    providers: [] clause on top
     //
+    //    Or use @SkipSelf() to make sure the component only uses
+    //    the component injection by parent component.
+    //
     // 4. Back to original
 
     constructor() {
