@@ -15,7 +15,8 @@ import {
 } from '@angular/core';
 import {Course} from '../model/course';
 import {CourseImageComponent} from '../course-image/course-image.component';
-// No longer need the token if we use useClass
+
+// 5. No longer need the token if we use useClass
 // import { COURSES_SERVICE } from '../app.component';
 
 @Component({
@@ -35,14 +36,19 @@ export class CourseCardComponent implements OnInit {
     courseEmitter = new EventEmitter<Course>();
 
 
+    // 1. Original
     // constructor() {
 
-    //  Need to add this if we use our own provider
-    // constructor(@Inject(COURSES_SERVICE) private coursesServices: CoursesService) {
+    // 2. Need to add this if we use our own provider
+    //    constructor(@Inject(COURSES_SERVICE) private coursesServices: CoursesService) {
 
-    // We use classname CoursesServices in app.component.ts instead
-    // of Injection Token and it still works
-    constructor(private coursesServices: CoursesService) {
+    // 3. We use classname CoursesServices in app.component.ts instead
+    //    of Injection Token and it still works
+    // constructor(private coursesServices: CoursesService) {
+
+    // 4. Back to original
+
+    constructor() {
 
     }
 

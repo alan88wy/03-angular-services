@@ -7,6 +7,7 @@ import {Observable} from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { CoursesService } from './services/courses.service';
 
+// 2. Using factory function
 // We don't normally need to create our own provider. It comes with Angular.
 // Example provider in the courserServices.ts file:
 //    @Injectable({
@@ -17,6 +18,8 @@ import { CoursesService } from './services/courses.service';
 // }
 
 // export const COURSES_SERVICE = new InjectionToken<CoursesService>('COURSES_SERVICE');
+//
+// 2. Using factory Function
 // @Component({
 //   selector: 'app-root',
 //   templateUrl: './app.component.html',
@@ -30,7 +33,7 @@ import { CoursesService } from './services/courses.service';
 //   ]
 // })
 
-// Instead of using Injection Token, we can use the class name as well:
+// 3. Instead of using Injection Token, we can use the class name as well:
 
 // @Component({
 //   selector: 'app-root',
@@ -45,17 +48,34 @@ import { CoursesService } from './services/courses.service';
 //   ]
 // })
 
-// We can do this as well instead of the above
+// 4. We can do this as well instead of the above
+// @Component({
+//   selector: 'app-root',
+//   templateUrl: './app.component.html',
+//   styleUrls: ['./app.component.css'],
+//   providers: [
+//     {
+//       provide: CoursesService,
+//       useClass: CoursesService
+//     }
+//   ]
+// })
+
+// 5. Further Simplify:
+// @Component({
+//   selector: 'app-root',
+//   templateUrl: './app.component.html',
+//   styleUrls: ['./app.component.css'],
+//   providers: [
+//       CoursesService
+//   ]
+// })
+
+// 6. Back to original
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [
-    {
-      provide: CoursesService,
-      useClass: CoursesService
-    }
-  ]
 })
 export class AppComponent implements OnInit {
 
