@@ -1,0 +1,36 @@
+<div class="top-menu">
+
+  <img class="logo"
+       src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
+
+</div>
+
+<div>
+
+  <!-- <div class="courses"> -->
+  <!-- 2. We do the async here instead.
+          Async is important as it will automatically takes care of
+          unsubscribing the observable if component failed,
+          which can prevent memory leak.
+  -->
+  <div class="courses" *ngIf="courses$ | async as courses">
+
+    <!-- <course-card *ngFor="let course of courses" -->
+    <!-- 1. Using async to wait for server to come back with a list of courses -->
+    <!-- <course-card *ngFor="let course of ( courses$ | async )" -->
+    <!-- 2. Instead of doing the async here, we do it at the parent DIV above -->
+    <course-card *ngFor="let course of courses"
+      [course]="course" >
+
+      <course-image [src]="course.iconUrl"></course-image>
+
+    </course-card>
+
+  </div>
+
+
+</div>
+
+
+
+
