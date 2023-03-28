@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren, Injectable, InjectionToken, Inject } from '@angular/core';
 import {COURSES} from '../db-data';
 import {Course} from './model/course';
 import {CourseCardComponent} from './course-card/course-card.component';
@@ -7,10 +7,55 @@ import {Observable} from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { CoursesService } from './services/courses.service';
 
+// We don't normally need to create our own provider. It comes with Angular.
+// Example provider in the courserServices.ts file:
+//    @Injectable({
+//        providedIn: 'root'
+//    })
+// function CoursesServiceProvider(http: HttpClient): CoursesService {
+//   return new CoursesService(http)
+// }
+
+// export const COURSES_SERVICE = new InjectionToken<CoursesService>('COURSES_SERVICE');
+// @Component({
+//   selector: 'app-root',
+//   templateUrl: './app.component.html',
+//   styleUrls: ['./app.component.css'],
+//   providers: [
+//     {
+//       provide: COURSES_SERVICE,
+//       useFactory: CoursesServiceProvider,
+//       deps: [ HttpClient]
+//     }
+//   ]
+// })
+
+// Instead of using Injection Token, we can use the class name as well:
+
+// @Component({
+//   selector: 'app-root',
+//   templateUrl: './app.component.html',
+//   styleUrls: ['./app.component.css'],
+//   providers: [
+//     {
+//       provide: CoursesService,
+//       useFactory: CoursesServiceProvider,
+//       deps: [ HttpClient]
+//     }
+//   ]
+// })
+
+// We can do this as well instead of the above
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [
+    {
+      provide: CoursesService,
+      useClass: CoursesService
+    }
+  ]
 })
 export class AppComponent implements OnInit {
 
@@ -20,6 +65,12 @@ export class AppComponent implements OnInit {
   // courses = {};
 
   // constructor(private http: HttpClient, private coursesService: CoursesService) {
+  // constructor(private coursesService: CoursesService) {
+
+  // If we create our own provider, we need to put in the @Inject here
+  // constructor(@Inject(COURSES_SERVICE) private coursesService: CoursesService) {
+
+  // use Class name CoursesService instead of token
   constructor(private coursesService: CoursesService) {
 
   }
