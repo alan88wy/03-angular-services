@@ -1,3 +1,4 @@
+import { CONFIG_TOKEN, APP_CONFIG, AppConfig } from './config';
 import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren, Injectable, InjectionToken, Inject } from '@angular/core';
 import {COURSES} from '../db-data';
 import {Course} from './model/course';
@@ -72,6 +73,32 @@ import { CoursesService } from './services/courses.service';
 // })
 
 // 6. Back to original
+// @Component({
+//   selector: 'app-root',
+//   templateUrl: './app.component.html',
+//   styleUrls: ['./app.component.css'],
+//   providers: [
+//     {
+//       provide: CONFIG_TOKEN,
+//       useFactory: () => APP_CONFIG
+//     }
+//   ]
+// })
+
+// 7. We can use useValue instead
+// @Component({
+//   selector: 'app-root',
+//   templateUrl: './app.component.html',
+//   styleUrls: ['./app.component.css'],
+//   providers: [
+//     {
+//       provide: CONFIG_TOKEN,
+//       useValue: APP_CONFIG
+//     }
+//   ]
+// })
+//
+// 8.Let's make it tree shakable
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -91,10 +118,32 @@ export class AppComponent implements OnInit {
   // constructor(@Inject(COURSES_SERVICE) private coursesService: CoursesService) {
 
   // use Class name CoursesService instead of token
-  constructor(private coursesService: CoursesService) {
+  // constructor(
+  //   private coursesService: CoursesService,
+  //   @Inject(CONFIG_TOKEN) private config: AppConfig
+  //   ) {
+  //     console.log(config)
+  // }
 
+  //  7. Even if we do not inject the APP_CONFIG here, it will still
+  //     works because of the provider clause above. It will still be
+  //     injected in the application bundle
+  // constructor(
+  //   private coursesService: CoursesService
+  //   ) {
+
+  // }
+
+  // 8. Three Shakal providers.
+  //    After removing the provider, if we need APP_CONFIG
+  //    we can do this. Otherwise the config will not be injected
+  //    into the code:
+  constructor(
+    private coursesService: CoursesService,
+    @Inject(CONFIG_TOKEN) private config: AppConfig
+    ) {
+      console.log(config)
   }
-
   ngOnInit() {
 
     // const params = new HttpParams()

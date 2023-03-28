@@ -44,8 +44,12 @@ export class CourseCardComponent implements OnInit {
 
     // 3. We use classname CoursesServices in app.component.ts instead
     //    of Injection Token and it still works
-    // constructor(private coursesServices: CoursesService) {
-
+    //    constructor(private coursesServices: CoursesService) {
+    //
+    //    Can use @Self() before declaring the services if you
+    //    only want to use service created by this component in the
+    //    providers: [] clause on top
+    //
     // 4. Back to original
 
     constructor() {
