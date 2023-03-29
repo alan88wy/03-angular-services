@@ -1,5 +1,5 @@
 import { CONFIG_TOKEN, APP_CONFIG, AppConfig } from './config';
-import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren, Injectable, InjectionToken, Inject, ChangeDetectorRef, DoCheck } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren, Injectable, InjectionToken, Inject, ChangeDetectorRef, DoCheck, ChangeDetectionStrategy } from '@angular/core';
 import {COURSES} from '../db-data';
 import {Course} from './model/course';
 import {CourseCardComponent} from './course-card/course-card.component';
@@ -103,6 +103,7 @@ import { CoursesService } from './services/courses.service';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 // export class AppComponent implements OnInit {
 
@@ -115,6 +116,9 @@ export class AppComponent implements OnInit, DoCheck {
 
   // courses = COURSES;
   courses: Course[];
+
+  // 10. use by doCheck
+  loaded = false;
 
   // constructor(private http: HttpClient, private coursesService: CoursesService) {
   // constructor(private coursesService: CoursesService) {
@@ -154,7 +158,7 @@ export class AppComponent implements OnInit, DoCheck {
 
   // 10. DoCheck is useful if we want to do customer check
   ngDoCheck(): void {
-    if (this.courses) {
+    if (this.loaded) {
       this.cd.markForCheck();
     }
   }
@@ -187,6 +191,7 @@ export class AppComponent implements OnInit, DoCheck {
             // 9. Using change detector
             // 10. We do this at doCheck instead
             // this.cd.markForCheck();
+            this.loaded = true;
           }
         )
   }
