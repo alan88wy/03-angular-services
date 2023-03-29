@@ -107,9 +107,11 @@ import { CoursesService } from './services/courses.service';
 export class AppComponent implements OnInit {
 
   // Can also use observerable
-  courses$ : Observable<Course[]>;
+  // We will remove this for now and use subscribe in OnInit
+  // courses$ : Observable<Course[]>;
 
-  // courses = {};
+  // courses = COURSES;
+  courses: Course[];
 
   // constructor(private http: HttpClient, private coursesService: CoursesService) {
   // constructor(private coursesService: CoursesService) {
@@ -163,7 +165,12 @@ export class AppComponent implements OnInit {
     // this.courses$ = this.http.get<Course[]>('/api/courses', { params });
 
     // We use CourseService instead of doing the above
-    this.courses$ = this.coursesService.loadCourses();
+    // this.courses$ = this.coursesService.loadCourses();
+    // use subscribe instead
+    this.coursesService.loadCourses()
+        .subscribe (
+          courses => this.courses = courses
+        )
   }
 
 
@@ -172,6 +179,19 @@ export class AppComponent implements OnInit {
     .subscribe (
       () => console.log("Course Saved !")
     );
+  }
+
+  onEditCourse() {
+
+    // console.log("here")
+    const course = this.courses[0];
+    const newCourse = {...course};
+
+    newCourse.description = "new Value !"
+
+    this.courses[0] = newCourse;
+
+    this.courses[0].description = "New Value !"
   }
 
 }

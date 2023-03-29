@@ -11,7 +11,8 @@ import {
     Output,
     QueryList,
     ViewEncapsulation,
-    Inject
+    Inject,
+    ChangeDetectionStrategy
 } from '@angular/core';
 import {Course} from '../model/course';
 import {CourseImageComponent} from '../course-image/course-image.component';
@@ -22,7 +23,20 @@ import {CourseImageComponent} from '../course-image/course-image.component';
 @Component({
     selector: 'course-card',
     templateUrl: './course-card.component.html',
-    styleUrls: ['./course-card.component.css']
+    styleUrls: ['./course-card.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
+    // OnPush will have better performance
+    //
+    // OnPush strategy will not check the unnecessary
+    // dirty checking in ChildComponent and it’s child component ,GrandChildComponent, after applying
+    // the ChangeDetectionStrategy.onPush strategy. It will make the component faster.
+    //
+    // By default, when a state value in component is changed, Angular updates all child component to
+    // sync the value between view and component for all time.
+    //
+    // It will update all component view from top to bottom, whenever an event is triggered( eg. XHR,
+    // promise, user events) of any component. This unnecessary change detection checking leads to
+    // performance issue when you are working with large project or handling large data.
 })
 export class CourseCardComponent implements OnInit {
 
@@ -71,6 +85,8 @@ export class CourseCardComponent implements OnInit {
     }
 
 
-
+    OnTitleChange(newTitle: string) {
+      this.course.description = newTitle;
+    }
 
 }

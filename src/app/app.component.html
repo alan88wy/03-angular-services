@@ -7,14 +7,19 @@
 
 <div>
 
-  <!-- <div class="courses"> -->
+  <div class="demo">
+    <button (click)="onEditCourse()">EDIT</button>
+  </div>
+
+  <div class="courses">
   <!-- 2. We do the async here instead.
           Async is important as it will automatically takes care of
           unsubscribing the observable if component failed,
           which can prevent memory leak.
   -->
-  <div class="courses" *ngIf="courses$ | async as courses">
-
+  <!-- <div class="courses" *ngIf="courses$ | async as courses"> -->
+  <!-- 3. Change Detection 1 -->
+  <!-- <div class="courses" > -->
     <!-- <course-card *ngFor="let course of courses" -->
     <!-- 1. Using async to wait for server to come back with a list of courses -->
     <!-- <course-card *ngFor="let course of ( courses$ | async )" -->
