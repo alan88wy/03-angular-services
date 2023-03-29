@@ -1,5 +1,5 @@
 import { CONFIG_TOKEN, APP_CONFIG, AppConfig } from './config';
-import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren, Injectable, InjectionToken, Inject } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren, Injectable, InjectionToken, Inject, ChangeDetectorRef, DoCheck } from '@angular/core';
 import {COURSES} from '../db-data';
 import {Course} from './model/course';
 import {CourseCardComponent} from './course-card/course-card.component';
@@ -104,7 +104,10 @@ import { CoursesService } from './services/courses.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit {
+// export class AppComponent implements OnInit {
+
+// 10. Let's implement doCheck here
+export class AppComponent implements OnInit, DoCheck {
 
   // Can also use observerable
   // We will remove this for now and use subscribe in OnInit
@@ -142,10 +145,20 @@ export class AppComponent implements OnInit {
   //    into the code:
   constructor(
     private coursesService: CoursesService,
+    // 9. Using change detector
+    private cd: ChangeDetectorRef,
     @Inject(CONFIG_TOKEN) private config: AppConfig
     ) {
       console.log(config)
   }
+
+  // 10. DoCheck is useful if we want to do customer check
+  ngDoCheck(): void {
+    if (this.courses) {
+      this.cd.markForCheck();
+    }
+  }
+
   ngOnInit() {
 
     // const params = new HttpParams()
@@ -169,7 +182,12 @@ export class AppComponent implements OnInit {
     // use subscribe instead
     this.coursesService.loadCourses()
         .subscribe (
-          courses => this.courses = courses
+          courses => {
+            this.courses = courses;
+            // 9. Using change detector
+            // 10. We do this at doCheck instead
+            // this.cd.markForCheck();
+          }
         )
   }
 
