@@ -12,6 +12,7 @@ import {
     QueryList,
     ViewEncapsulation,
     Inject,
+    Attribute,
     ChangeDetectionStrategy
 } from '@angular/core';
 import {Course} from '../model/course';
@@ -69,7 +70,9 @@ export class CourseCardComponent implements OnInit {
     //
     // 4. Back to original
 
-    constructor() {
+    // 10. Angular Attribute
+    constructor(@Attribute('type') private type: string) {
+      console.log('type : ', type)
 
     }
 
