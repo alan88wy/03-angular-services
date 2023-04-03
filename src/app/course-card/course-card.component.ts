@@ -12,7 +12,10 @@ import {
     QueryList,
     ViewEncapsulation,
     Inject,
-    ChangeDetectionStrategy
+    ChangeDetectionStrategy,
+    AfterContentChecked,
+    OnChanges,
+    OnDestroy
 } from '@angular/core';
 import {Course} from '../model/course';
 import {CourseImageComponent} from '../course-image/course-image.component';
@@ -38,7 +41,7 @@ import {CourseImageComponent} from '../course-image/course-image.component';
     // promise, user events) of any component. This unnecessary change detection checking leads to
     // performance issue when you are working with large project or handling large data.
 })
-export class CourseCardComponent implements OnInit {
+export class CourseCardComponent implements OnInit, OnDestroy, OnChanges, AfterContentChecked {
 
     @Input()
     course: Course;
@@ -70,13 +73,37 @@ export class CourseCardComponent implements OnInit {
     // 4. Back to original
 
     constructor() {
-
+      console.log("Constructor")
     }
+
+
 
     ngOnInit() {
+      console.log("OnInit");
+    }
+
+    ngOnDestroy() {
+      // Use to do things like unsubscribe from Observable
+      console.log("OnDestroy");
+    }
+
+    ngOnChanges(changes) {
+      // Call before ngOnInit
+      // Will only be trigger when @Input change
+      // If you change course's value like description in this component, it will not be triggered.
+      // But if you replace the object like this.courses[0] = newCourse;
+
+      console.log("onNgChanges ", changes);
 
     }
 
+    ngAfterContentChecked() {
+
+      // Call after Angular checks if the content has changed
+      // Only do lightweight calculations or else it will affect performance.
+
+      console.log("ngAfterContentChecked");
+    }
 
     onSaveClicked(description:string) {
 

@@ -148,6 +148,9 @@ export class AppComponent implements OnInit, DoCheck {
   //    we can do this. Otherwise the config will not be injected
   //    into the code:
   constructor(
+    // Constructor is call before anything else including  @Input
+    // It takes dependency injection
+
     private coursesService: CoursesService,
     // 9. Using change detector
     private cd: ChangeDetectorRef,
@@ -164,6 +167,8 @@ export class AppComponent implements OnInit, DoCheck {
   }
 
   ngOnInit() {
+
+    // ngOnInit is call after constructor is called and after @Input
 
     // const params = new HttpParams()
     //                 .set("page", 1)
@@ -195,6 +200,7 @@ export class AppComponent implements OnInit, DoCheck {
           }
         )
   }
+
 
 
   save(course: Course) {
