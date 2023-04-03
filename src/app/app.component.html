@@ -22,10 +22,17 @@
   <!-- <div class="courses" > -->
     <!-- <course-card *ngFor="let course of courses" -->
     <!-- 1. Using async to wait for server to come back with a list of courses -->
-    <!-- <course-card *ngFor="let course of ( courses$ | async )" -->
+    <!--  <course-card *ngFor="let course of ( courses$ | async )" -->
     <!-- 2. Instead of doing the async here, we do it at the parent DIV above -->
+
+    <!-- 10.  We use attribute here (type)
+              In Course-card component, we can use either the @Input or @Attribute to receive the input.
+              However, since this is a constant that does not change, it would perform better if we
+              use @Attribute instead
+      -->
     <course-card *ngFor="let course of courses"
       (courseChanged)="save($event)"
+      type="beginner"
       [course]="course" >
 
       <course-image [src]="course.iconUrl"></course-image>
