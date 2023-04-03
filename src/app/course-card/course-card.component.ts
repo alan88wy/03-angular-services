@@ -12,15 +12,10 @@ import {
     QueryList,
     ViewEncapsulation,
     Inject,
-<<<<<<< HEAD
     ChangeDetectionStrategy,
     AfterContentChecked,
     OnChanges,
     OnDestroy
-=======
-    Attribute,
-    ChangeDetectionStrategy
->>>>>>> 6a0238592e92f37a006e38e1356d772136a75292
 } from '@angular/core';
 import {Course} from '../model/course';
 import {CourseImageComponent} from '../course-image/course-image.component';
@@ -77,15 +72,8 @@ export class CourseCardComponent implements OnInit, OnDestroy, OnChanges, AfterC
     //
     // 4. Back to original
 
-<<<<<<< HEAD
     constructor() {
       console.log("Constructor")
-=======
-    // 10. Angular Attribute
-    constructor(@Attribute('type') private type: string) {
-      console.log('type : ', type)
-
->>>>>>> 6a0238592e92f37a006e38e1356d772136a75292
     }
 
 
