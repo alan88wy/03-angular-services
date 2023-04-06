@@ -18,8 +18,8 @@ import {
     OnDestroy,
     AfterViewChecked
 } from '@angular/core';
-import {Course} from '../model/course';
-import {CourseImageComponent} from '../course-image/course-image.component';
+import {Course} from '../../model/course';
+// import {CourseImageComponent} from '../course-image/course-image.component';
 
 // 5. No longer need the token if we use useClass
 // import { COURSES_SERVICE } from '../app.component';
@@ -73,7 +73,7 @@ export class CourseCardComponent implements OnInit, OnDestroy, OnChanges, AfterC
     //
     // 4. Back to original
 
-    constructor() {
+    constructor(private coursesService: CoursesService) {
       console.log("Constructor")
     }
 
