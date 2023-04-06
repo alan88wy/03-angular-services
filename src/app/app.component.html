@@ -30,7 +30,16 @@
               However, since this is a constant that does not change, it would perform better if we
               use @Attribute instead
       -->
-    <course-card *ngFor="let course of courses"
+
+    <!-- 11. Using our custom pipe - filterByCategory to only return record that has category = 'BEGINNER' -->
+    <!--     However, the pipe is only call once at the beginning. If you change the data, it will not
+             be call again. eg if you click on the EDIT button, view data will change but pipe not
+             being call again and the new record is not filtered. eg if we change BEGINNER to ADVANCE,
+             the ADVANCE record will still be shown. This is call pure pipe.
+
+             To make sure it will run again, we need to add pure: false at the @PIPE
+    -->
+    <course-card *ngFor="let course of (courses | filterByCategory: 'BEGINNER')"
       (courseChanged)="save($event)"
       type="beginner"
       [course]="course" >
