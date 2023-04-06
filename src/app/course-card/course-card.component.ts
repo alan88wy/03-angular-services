@@ -15,7 +15,8 @@ import {
     ChangeDetectionStrategy,
     AfterContentChecked,
     OnChanges,
-    OnDestroy
+    OnDestroy,
+    AfterViewChecked
 } from '@angular/core';
 import {Course} from '../model/course';
 import {CourseImageComponent} from '../course-image/course-image.component';
@@ -41,7 +42,7 @@ import {CourseImageComponent} from '../course-image/course-image.component';
     // promise, user events) of any component. This unnecessary change detection checking leads to
     // performance issue when you are working with large project or handling large data.
 })
-export class CourseCardComponent implements OnInit, OnDestroy, OnChanges, AfterContentChecked {
+export class CourseCardComponent implements OnInit, OnDestroy, OnChanges, AfterContentChecked, AfterViewChecked {
 
     @Input()
     course: Course;
@@ -76,6 +77,13 @@ export class CourseCardComponent implements OnInit, OnDestroy, OnChanges, AfterC
       console.log("Constructor")
     }
 
+    ngAfterViewChecked(): void {
+
+      // Call with each change and after the AfterContentChecked method
+      // Cannot change content here. View will not change even if you change the value here
+
+      console.log('After View Checked');
+    }
 
 
     ngOnInit() {
@@ -101,6 +109,7 @@ export class CourseCardComponent implements OnInit, OnDestroy, OnChanges, AfterC
 
       // Call after Angular checks if the content has changed
       // Only do lightweight calculations or else it will affect performance.
+      // Also good place to change content before displaying.
 
       console.log("ngAfterContentChecked");
     }
