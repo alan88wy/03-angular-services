@@ -117,6 +117,8 @@ export class AppComponent implements OnInit, DoCheck {
   // courses = COURSES;
   courses: Course[];
 
+  coursesTotal: number;
+
   // 10. use by doCheck
   loaded = false;
 
@@ -193,6 +195,7 @@ export class AppComponent implements OnInit, DoCheck {
         .subscribe (
           courses => {
             this.courses = courses;
+            this.coursesTotal = courses.length;
             // 9. Using change detector
             // 10. We do this at doCheck instead
             // this.cd.markForCheck();

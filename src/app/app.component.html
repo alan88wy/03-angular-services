@@ -8,7 +8,14 @@
 <div>
 
   <div class="demo">
-    <button (click)="onEditCourse()">EDIT</button>
+    <button (click)="onEditCourse()" i18n>EDIT</button>
+
+    <!-- i18n Pluralization support example -->
+    <br />
+    <br />
+    <div i18n>{coursesTotal, plural, =0 {No Courses available.}
+               =1 {One course is available}
+              other {A total of {{coursesTotal}} are available} }</div>
   </div>
 
   <div class="courses">
@@ -39,7 +46,10 @@
 
              To make sure it will run again, we need to add pure: false at the @PIPE
     -->
-    <course-card *ngFor="let course of (courses | filterByCategory: 'BEGINNER')"
+    <!-- <course-card *ngFor="let course of (courses | filterByCategory: 'BEGINNER')" -->
+
+    <!-- 12. i18 Alternative Expression example -->
+    <course-card *ngFor="let course of courses"
       (courseChanged)="save($event)"
       type="beginner"
       [course]="course" >

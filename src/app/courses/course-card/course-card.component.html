@@ -1,36 +1,44 @@
 <div class="course-card" *ngIf="course" #container>
 
-  <div class="course-title">
-    {{ cardIndex || '' + ' ' + course.description }}
-  </div>
+    <div class="course-title">
+      {{ cardIndex || '' + ' ' + course.description }}
+    </div>
 
-  <ng-content select="course-image"
-              *ngIf="course.iconUrl"></ng-content>
+    <ng-content select="course-image"
+                *ngIf="course.iconUrl"></ng-content>
 
-  <div class="course-description">
+    <div class="course-description">
 
-    Edit Title: <input #courseTitle [value]="course.description"
-    (keyup)="OnTitleChange(courseTitle.value)"
-    >
+      Edit Title: <input #courseTitle [value]="course.description"
+      (keyup)="OnTitleChange(courseTitle.value)"
+      >
 
-  </div>
+    </div>
 
-  <div class="course-category" [ngSwitch]="course.category">
+    <!-- <div class="course-category" [ngSwitch]="course.category">
 
-    <div class="category" *ngSwitchCase="'BEGINNER'">Beginner</div>
+      <div class="category" *ngSwitchCase="'BEGINNER'">Beginner</div>
 
-    <div class="category" *ngSwitchCase="'INTERMEDIATE'">Intermediate</div>
+      <div class="category" *ngSwitchCase="'INTERMEDIATE'">Intermediate</div>
 
-    <div class="category" *ngSwitchCase="'ADVANCED'">Advanced</div>
+      <div class="category" *ngSwitchCase="'ADVANCED'">Advanced</div>
 
-  </div>
+    </div> -->
 
-  <button (click)="onSaveClicked(courseTitle.value)">Save Course</button>
+    <!-- Using i18n Alternative Expression-->
+    <div class="course-category">
+        <div class="category" i18n >
+          {
+            course.category,
+            select,
+            BEGINNER {Beginner}
+            INTERMEDIATE {Intermediate}
+            ADVANCED {Advanced}
+          }
+        </div>
+
+    </div>
+
+    <button (click)="onSaveClicked(courseTitle.value)">Save Course</button>
 
 </div>
-
-
-
-
-
-
