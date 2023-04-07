@@ -12,7 +12,7 @@
       </trans-unit>
       <trans-unit id="6f4757f571cb9c54e80373910e7f1e34e2c17106" datatype="html">
         <source>{VAR_PLURAL, plural, =0 {No Courses available.} =1 {One course is available} other {A total of <x id="INTERPOLATION"/> are available}}</source>
-        <target>{VAR_PLURAL, plural, =0 {没有可用的课程。} =1 {一门课程可用} other {总共 <x id="INTERPOLATION"/> 门课程可用}}</target>
+        <target>{VAR_PLURAL, plural, =0 {没有课程。} =1 {只有一门课程} other {总共有<x id="INTERPOLATION"/>门课程}}</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.component.html</context>
           <context context-type="linenumber">16,18</context>

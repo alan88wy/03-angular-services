@@ -8,11 +8,24 @@
       "sourceRoot": "src",
       "projectType": "application",
       "prefix": "",
+      "i18n": {
+        "sourceLocale": "en-US",
+        "i18nFile": "src/locale/messages.zh_CN.xlf",
+        "i18nFormat": "xlf",
+        "i18nLocale": "zh",
+        "i18nMissingTranslation": "ignore",
+        "locales": {
+          "zh": {
+            "translation": "src/locale/messages.zh_CN.xlf"
+          }
+        }
+      },
       "schematics": {},
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "localize": true,
             "outputPath": "dist/angular-course",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -40,7 +53,7 @@
             "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "namedChunks": true
+            "namedChunks": true,
           },
           "configurations": {
             "production": {
@@ -62,7 +75,10 @@
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true
+              "buildOptimizer": true,
+            },
+            "zh": {
+              "localize": ["zh"]
             }
           }
         },
@@ -74,6 +90,9 @@
           "configurations": {
             "production": {
               "browserTarget": "angular-course:build:production"
+            },
+            "zh": {
+              "browserTarget": "angular-course:build:zh"
             }
           }
         },

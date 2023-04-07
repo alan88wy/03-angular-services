@@ -28,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   providers: [
     // CoursesService,
+    // { provide: LOCALE_ID, useValue: 'zh_CN'},
   ],
   bootstrap: [AppComponent]
 })
