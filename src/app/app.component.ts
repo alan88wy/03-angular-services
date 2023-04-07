@@ -1,5 +1,5 @@
 import { CONFIG_TOKEN, APP_CONFIG, AppConfig } from './config';
-import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren, Injectable, InjectionToken, Inject, ChangeDetectorRef, DoCheck, ChangeDetectionStrategy } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren, Injectable, InjectionToken, Inject, ChangeDetectorRef, DoCheck, ChangeDetectionStrategy, Injector } from '@angular/core';
 import {COURSES} from '../db-data';
 import {Course} from './model/course';
 // import {CourseCardComponent} from './course-card/course-card.component';
@@ -7,6 +7,8 @@ import {HighlightedDirective} from './courses/directives/highlighted.directive';
 import {Observable} from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { CoursesService } from './courses/services/courses.service';
+import { createCustomElement } from '@angular/elements';
+import { CourseTitleComponent } from './course-title/course-title.component';
 
 // 2. Using factory function
 // We don't normally need to create our own provider. It comes with Angular.
@@ -156,7 +158,8 @@ export class AppComponent implements OnInit, DoCheck {
     private coursesService: CoursesService,
     // 9. Using change detector
     private cd: ChangeDetectorRef,
-    @Inject(CONFIG_TOKEN) private config: AppConfig
+    @Inject(CONFIG_TOKEN) private config: AppConfig,
+    private injector: Injector
     ) {
       console.log(config)
   }
@@ -170,6 +173,9 @@ export class AppComponent implements OnInit, DoCheck {
 
   ngOnInit() {
 
+    const htmlElement = createCustomElement(CourseTitleComponent, {injector: this.injector});
+
+    customElements.define('course-title', htmlElement)
     // ngOnInit is call after constructor is called and after @Input
 
     // const params = new HttpParams()

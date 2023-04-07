@@ -10,11 +10,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import {HttpClientModule} from '@angular/common/http';
 import { CoursesModule } from './courses/courses.module';
 import { HttpClientModule } from '@angular/common/http';
+import { CourseTitleComponent } from './course-title/course-title.component';
 // import { CoursesService } from './courses/services/courses.service';
 
 @NgModule({
   declarations: [
     AppComponent,
+    CourseTitleComponent,
     // CourseCardComponent,
     // CourseImageComponent,
     // HighlightedDirective,
@@ -30,6 +32,7 @@ import { HttpClientModule } from '@angular/common/http';
     // CoursesService,
     // { provide: LOCALE_ID, useValue: 'zh_CN'},
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [CourseTitleComponent]
 })
 export class AppModule { }
