@@ -15,6 +15,9 @@
         "i18nLocale": "zh",
         "i18nMissingTranslation": "ignore",
         "locales": {
+          "en": {
+            "translation": "src/locale/messages.xlf"
+          },
           "zh": {
             "translation": "src/locale/messages.zh_CN.xlf"
           }

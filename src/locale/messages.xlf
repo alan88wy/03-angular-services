@@ -4,7 +4,6 @@
     <body>
       <trans-unit id="c579a35156940ef439082b06bdaea30f4f778073" datatype="html">
         <source>EDIT</source>
-        <target>更改</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.component.html</context>
           <context context-type="linenumber">11</context>
@@ -12,8 +11,7 @@
       </trans-unit>
       <trans-unit id="6f4757f571cb9c54e80373910e7f1e34e2c17106" datatype="html">
         <source>{VAR_PLURAL, plural, =0 {No Courses available.} =1 {One course is available} other {A total of <x id="INTERPOLATION"/> are available}}</source>
-        <target>{VAR_PLURAL, plural, =0 {没有可用的课程。} =1 {一门课程可用} other {总共 <x id="INTERPOLATION"/> 门课程可用}}</target>
-        <context-group purpose="location">
+         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.component.html</context>
           <context context-type="linenumber">16,18</context>
         </context-group>
@@ -40,8 +38,7 @@
       </trans-unit>
       <trans-unit id="d136815a5d48f44a4c49fa02b2493417cda30cac" datatype="html">
         <source>{VAR_SELECT, select, BEGINNER {Beginner} INTERMEDIATE {Intermediate} ADVANCED {Advanced}}</source>
-        <target>{VAR_SELECT, select, BEGINNER {初级课程} INTERMEDIATE {中级课程} ADVANCED {高级课程}}</target>
-        <context-group purpose="location">
+          <context-group purpose="location">
           <context context-type="sourcefile">src/app/courses/course-card/course-card.component.html</context>
           <context context-type="linenumber">31,37</context>
         </context-group>
